@@ -18,12 +18,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: install the gcloud cli
+      - name: install gcloud cli
         run: |
           sudo apt update
           sudo snap install google-cloud-sdk --classic
 
-      - name: Authenticate Google Cloud SDK
+      - name: Authenticate With Google Cloud Using Service Acount Key
         run: |
           echo "$GOOGLE_APPLICATION_CREDENTIALS" > /tmp/keyfile.json
           gcloud auth activate-service-account --key-file=/tmp/keyfile.json
@@ -38,4 +38,8 @@ jobs:
           docker build -t us-east1-docker.pkg.dev/$GOOGLE_PROJECT/my-reg/my-reg:$GITHUB_RUN_NUMBER .
           docker push us-east1-docker.pkg.dev/$GOOGLE_PROJECT/my-reg/my-reg:$GITHUB_RUN_NUMBER
 
+      - name: Remove Service Acount Key from Runner
+        run: |
+          echo "$GOOGLE_APPLICATION_CREDENTIALS" > /tmp/keyfile.json
+          gcloud auth activate-service-account --key-file=/tmp/keyfile.json
 
