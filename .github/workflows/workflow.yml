@@ -42,6 +42,7 @@ jobs:
         run: |
           gcloud run deploy my-reg \
           --region us-east1 \
+          --project GOOGLE_PROJECT \
           --image us-east1-docker.pkg.dev/root-app-350112/my-reg/my-reg:$GITHUB_RUN_NUMBER\
           --quiet
 
