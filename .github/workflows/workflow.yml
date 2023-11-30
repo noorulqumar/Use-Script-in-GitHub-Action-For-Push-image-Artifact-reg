@@ -1,0 +1,41 @@
+name: Deploy Nginx
+
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+env:
+      GOOGLE_APPLICATION_CREDENTIALS: "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}"
+      GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
+      GITHUB_RUN_NUMBER: ${{ github.run_number }}
+
+jobs:
+  deploy:
+  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: install the gcloud cli
+        run: |
+          sudo apt update
+          sudo snap install google-cloud-sdk --classic
+
+      - name: Authenticate Google Cloud SDK
+        run: |
+          echo "$GOOGLE_APPLICATION_CREDENTIALS" > /tmp/keyfile.json
+          gcloud auth activate-service-account --key-file=/tmp/keyfile.json
+
+      - name: Check gcloud CLI Version
+        run: |
+          gcloud --version
+
+      - name: Build and push Docker image
+        run: |
+          gcloud auth configure-docker us-east1-docker.pkg.dev --quiet
+          docker build -t us-east1-docker.pkg.dev/$GOOGLE_PROJECT/my-reg/my-reg:$GITHUB_RUN_NUMBER .
+          docker push us-east1-docker.pkg.dev/$GOOGLE_PROJECT/my-reg/my-reg:$GITHUB_RUN_NUMBER
+
+
