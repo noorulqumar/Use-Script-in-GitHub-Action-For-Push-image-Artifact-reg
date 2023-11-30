@@ -40,6 +40,5 @@ jobs:
 
       - name: Remove Service Acount Key from Runner
         run: |
-          echo "$GOOGLE_APPLICATION_CREDENTIALS" > /tmp/keyfile.json
-          gcloud auth activate-service-account --key-file=/tmp/keyfile.json
+          rm /tmp/keyfile.json
 
