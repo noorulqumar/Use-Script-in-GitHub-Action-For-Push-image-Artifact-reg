@@ -1,4 +1,4 @@
 FROM nginx:alpine3.18
 
 
-RUN echo "Hello World updated!" > /usr/share/nginx/html/index.html
+RUN echo "Hello World updated image!" > /usr/share/nginx/html/index.html
