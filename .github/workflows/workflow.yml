@@ -56,7 +56,7 @@ jobs:
         uses: act10ns/slack@v1
         with: 
           status: starting
-          channel: '#meetups'
-          message: Starting Deployment...
+          channel: '#test-notification'
+          message: Deployed to testing Successfully...
         if: always()
 
