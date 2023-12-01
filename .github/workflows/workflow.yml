@@ -48,9 +48,9 @@ jobs:
 
 
 
-      - name: Remove Service Acount Key from Runner
-        run: |
-          rm /tmp/keyfile.json
+      # - name: Remove Service Acount Key from Runner
+      #   run: |
+      #     rm /tmp/keyfile.json
 
       - name: Slack Notification
         uses: act10ns/slack@v1
