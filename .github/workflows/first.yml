@@ -10,10 +10,7 @@ jobs:
   set_run_number:
     runs-on: ubuntu-latest
 
-    outputs:
-      run_number: ${{ steps.set_output.outputs.run_number }}
-
     steps:
     - name: Set GITHUB_RUN_NUMBER as output
       id: set_output
-      run: echo "::set-output name=run_number::${GITHUB_RUN_NUMBER}"
+      run: echo "RUN_NUMBER=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
