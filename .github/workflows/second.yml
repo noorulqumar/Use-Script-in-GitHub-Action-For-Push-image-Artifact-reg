@@ -1,16 +1,17 @@
 name: Workflow 2
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  
 
 jobs:
   use_run_number:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Run Workflow 1
-      uses: ./.github/workflows/workflow1.yml # Replace with correct path
       
     - name: Use GITHUB_RUN_NUMBER from Workflow 1
       run: echo "The run number is $RUN_NUMBER"
