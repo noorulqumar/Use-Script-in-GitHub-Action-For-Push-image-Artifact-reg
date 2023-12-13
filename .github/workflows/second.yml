@@ -13,4 +13,4 @@ jobs:
       uses: ./.github/workflows/workflow1.yml # Replace with correct path
       
     - name: Use GITHUB_RUN_NUMBER from Workflow 1
-      run: echo "The run number is ${{ needs.run_workflow_1.outputs.run_number }}"
+      run: echo "The run number is $RUN_NUMBER"
