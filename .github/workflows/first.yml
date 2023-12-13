@@ -1,0 +1,19 @@
+name: Workflow 1
+
+on: 
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  set_run_number:
+    runs-on: ubuntu-latest
+
+    outputs:
+      run_number: ${{ steps.set_output.outputs.run_number }}
+
+    steps:
+    - name: Set GITHUB_RUN_NUMBER as output
+      id: set_output
+      run: echo "::set-output name=run_number::${GITHUB_RUN_NUMBER}"
