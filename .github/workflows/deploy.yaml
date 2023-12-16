@@ -1,4 +1,4 @@
-name: Deploy Workflow
+name: Dep Workflow
 
 on:
   workflow_run:
@@ -6,7 +6,7 @@ on:
     types:
       - completed
     branches:
-      - main
+      - testing
 
 jobs:
   build:
