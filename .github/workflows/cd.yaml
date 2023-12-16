@@ -1,4 +1,4 @@
-name: Second Workflow
+name: Deploy Workflow
 
 on:
   workflow_run:
